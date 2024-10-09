@@ -1,0 +1,20 @@
+[SerializeField] float movementSpeed = 5f;
+float currentSpeed;
+Rigidbody rb;
+Vector3 direction;
+direction = new Vector3(moveHorizontal, 0.0f, moveVertical);
+direction = transform.TransformDirection(direction);
+void Start()
+{        
+    rb = GetComponent<Rigidbody>();
+    currentSpeed = movementSpeed;
+}
+void Update()
+{
+    float moveHorizontal = Input.GetAxis("Horizontal");
+    float moveVertical = Input.GetAxis("Vertical");
+}
+void FixedUpdate()
+{
+    rb.MovePosition(transform.position + direction * currentSpeed * Time.deltaTime);
+}
